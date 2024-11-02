@@ -1,0 +1,21 @@
+@import url('../../../styles/variables.css');
+
+.icon {
+	fill: var(--text-color-primary);
+	stroke: var(--text-color-primary);
+}
+
+.primary {
+	fill: var(--text-color-primary);
+	stroke: var(--text-color-primary);
+}
+
+.secondary {
+	fill: var(--text-color-secondary);
+	stroke: var(--text-color-secondary);
+}
+
+.accent {
+	fill: var(--text-color-accent);
+	stroke: var(--text-color-accent);
+}

@@ -1,0 +1,40 @@
+@import url(../../styles/variables.css);
+
+.card {
+	font-family: sans-serif;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xl);
+	padding-bottom: var(--space-xl);
+	background-color: var(--card-bg);
+}
+
+img {
+	background-color: var(--card-img-bg);
+	width: 100%;
+	height: auto;
+}
+
+.card:hover {
+	box-shadow: 0 4px 10px 0 #00000040;
+}
+
+.content-container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-l);
+	padding: 0 var(--space-xs);
+}
+
+.text-container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xxs);
+}
+
+.footer-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+

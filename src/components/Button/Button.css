@@ -1,0 +1,39 @@
+@import url(../../styles/variables.css);
+
+.button {
+	height: 52px;
+	box-sizing: border-box;
+	padding: var(--space-s) var(--space-l);
+	background-color: var(--color-brand);
+	color: var(--button-primary-text);
+	border: none;
+	font-size: 18px;
+	line-height: 22px;
+}
+
+.button:hover:not(.button--disabled, .button--loading) {
+	background-color: var(--color-brandHover);
+}
+
+.button:active:not(.button--disabled) {
+	background-color: var(--color-brandActive);
+}
+
+.button--loading {
+	line-height: 18px;
+	background-color: var(--color-brand);
+	padding: var(--space-s) var(--space-l);
+	display: flex;
+	align-items: center;
+}
+.button--loading:hover:not(.button--disabled) {
+	background-color: var(--color-brand);
+}
+
+.button--disabled {
+	background-color: var(--button-disabled);
+}
+
+.loader {
+	margin-right: var(--space-xxs);
+}

@@ -1,0 +1,75 @@
+@import url(../../../styles/variables.css);
+
+body {
+    // background-color: #ffffff55;
+    max-width: 85%;
+    margin: 0 auto;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.info {
+    margin: 0 auto;
+    text-align: center;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    &__title {
+        margin: 0;
+    }
+    &__content {
+        margin: 0;
+    }
+}
+
+.dropDown {
+    max-width: 300px;
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    &__total {
+        display: flex;
+        align-items: center;
+        gap: var(--space-m);
+        &-text {
+            font-size: 32px;
+        }
+        &-value {
+            font-size: 20px;
+            line-height: 24px;
+            font-weight: 700;
+            color: red;
+        }
+    }
+    &__items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 30px;
+    }
+    &__item {
+        max-width: 300px;
+    }
+}
+
+.search-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+
+.search {
+    display: flex;
+}
+
+.button { 
+    width: 137px;
+}
