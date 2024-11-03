@@ -74,6 +74,9 @@
 }
 
 .relatedItem {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     &__items {
         display: flex;
         justify-content: space-between;

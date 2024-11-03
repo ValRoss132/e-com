@@ -1,0 +1,14 @@
+@import url('../../Styles/variables.css');
+
+.pagination {
+    .page-link{
+        font-size: 18px;
+    }
+    .active {
+        background: var(--color-brand);
+    }
+    .active .page-link {
+
+        color: var(--text-color-w);
+    }
+}

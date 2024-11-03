@@ -1,6 +1,7 @@
 @import url(../../styles/variables.css);
 
 .card {
+	position: relative;
 	font-family: sans-serif;
 	display: flex;
 	flex-direction: column;
@@ -22,6 +23,8 @@ img {
 .content-container {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
 	gap: var(--space-l);
 	padding: 0 var(--space-xs);
 }
@@ -38,3 +41,11 @@ img {
 	justify-content: space-between;
 }
 
+.button {
+	position: relative;
+}
+.link::after {
+	content: '';
+	inset: 0;
+	position: absolute;
+}

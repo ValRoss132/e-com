@@ -5,7 +5,7 @@ import Icon from '../Icon';
 const Logo: React.FC<IconProps> = (props) => {
   return (
     <Icon {...props}>
-      <g clip-path="url(#clip0_502_630)">
+      <g clipPath="url(#clip0_502_630)">
         <path d="M42 0H0V42H42V0Z" fill="white" />
         <path
           d="M32.9035 20.601L31.9655 24.101H13.6535L8.66949 5.50549H12.2955L16.338 20.601H32.9035Z"

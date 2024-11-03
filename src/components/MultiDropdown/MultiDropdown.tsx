@@ -105,7 +105,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
               <li
                 key={option.key}
                 className={`multi-dropdown_option ${value.some((v) => v.key === option.key) ? 'selected' : ''}`}
-                onClick={(e: React.MouseEvent<HTMLLIElement>) => handleOptionClick(option)}
+                onClick={() => handleOptionClick(option)}
               >
                 {option.value}
               </li>

@@ -1,4 +1,19 @@
 :root {
-  background-color: rgba(100, 100, 100, 0.5);
+  background-color: rgba(239, 239, 239, 0.499);
+
+}
+
+a,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
 
 }

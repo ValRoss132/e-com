@@ -6,11 +6,13 @@ import Input from '../../Input';
 import Text from '../../Text';
 import './Products.scss';
 import MultiDropdown from '../../MultiDropdown';
-import { Link } from 'react-router-dom';
+import Pagination from '../../Pagination';
 
 function Products() {
   const [value, setValue] = useState('');
   const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(9);
 
   const handleChange = (value: string) => {
     setValue(value);
@@ -38,9 +40,11 @@ function Products() {
     fetch();
   }, []);
 
-  // const handleClickCard = (): void => {
+  const lastProductsIndex = currentPage * productsPerPage;
+  const firstProductsIndex = lastProductsIndex - productsPerPage;
+  const currentProducts = products.slice(firstProductsIndex, lastProductsIndex);
 
-  // }
+  const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
   return (
     <div className="page-wrapper">
@@ -70,7 +74,7 @@ function Products() {
           <span className="products__total-value">{products.length}</span>
         </div>
         <div className="products__items">
-          {products.map((product) => (
+          {currentProducts.map((product) => (
             <Card
               url={`/product/${product.id}`}
               className="products__item"
@@ -83,6 +87,14 @@ function Products() {
               actionSlot={<Button>Buy Now</Button>}
             />
           ))}
+        </div>
+        <div className="products__pagination">
+          <Pagination
+            productsPerPage={productsPerPage}
+            totalProducts={products.length}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </div>
