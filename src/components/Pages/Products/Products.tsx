@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '../../Card';
 import Button from '../../Button';
@@ -6,6 +6,7 @@ import Input from '../../Input';
 import Text from '../../Text';
 import './Products.scss';
 import MultiDropdown from '../../MultiDropdown';
+import { Link } from 'react-router-dom';
 
 function Products() {
   const [value, setValue] = useState('');
@@ -28,7 +29,7 @@ function Products() {
           title: raw.title,
           contentSlot: raw.price,
           captionSlot: raw.category.name,
-          image: raw.category.image,
+          image: raw.images[0],
           subTitle: raw.description,
         })),
       );
@@ -36,6 +37,10 @@ function Products() {
 
     fetch();
   }, []);
+
+  // const handleClickCard = (): void => {
+
+  // }
 
   return (
     <div className="page-wrapper">
@@ -62,18 +67,19 @@ function Products() {
           <Text className="products__total-text" view="title">
             Total Product
           </Text>
-          <span className="produtcs__total-value">{products.length}</span>
+          <span className="products__total-value">{products.length}</span>
         </div>
         <div className="products__items">
           {products.map((product) => (
             <Card
+              url={`/product/${product.id}`}
               className="products__item"
               key={product.id}
               title={product.title}
               image={product.image}
               subtitle={product.subTitle}
               captionSlot={product.captionSlot}
-              contentSlot={product.contentSlot}
+              contentSlot={`$${product.contentSlot}`}
               actionSlot={<Button>Buy Now</Button>}
             />
           ))}
