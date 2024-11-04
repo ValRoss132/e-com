@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { ProductData, ProductType } from '../Products';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ArrowDownIcon from '../../icons/ArrowDownIcon';
 import Text from '../../Text';
 import './Product.scss';
@@ -9,10 +9,14 @@ import Button from '../../Button';
 import Card from '../../Card';
 import Loader from '../../Loader';
 
+export type Filter = {
+  category: { id: number };
+};
+
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
-  const [relatedItems, setRelatedItem] = useState({});
+  const [relatedItems, setRelatedItem] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -86,10 +90,10 @@ const Product = () => {
                 className="products__item"
                 key={item.id}
                 title={item.title}
-                image={item.images}
-                subtitle={item.description}
-                captionSlot={item.category.name}
-                contentSlot={`$${item.price}`}
+                image={item.images[0]}
+                subtitle={item.subTitle}
+                captionSlot={item.captionSlot}
+                contentSlot={`$${item.contentSlot}`}
                 actionSlot={<Button>Buy Now</Button>}
               />
             ))}

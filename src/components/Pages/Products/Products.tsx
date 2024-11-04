@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '../../Card';
 import Button from '../../Button';
@@ -7,12 +7,29 @@ import Text from '../../Text';
 import './Products.scss';
 import MultiDropdown from '../../MultiDropdown';
 import Pagination from '../../Pagination';
-import ArrowDownIcon from '../../icons/ArrowDownIcon';
+
+export type ProductData = {
+  id: number;
+  title: string;
+  contentSlot: number;
+  subTitle: string;
+  images: string[];
+  captionSlot: string;
+};
+
+export type ProductType = {
+  id: number;
+  title: string;
+  price: number;
+  category: { name: string };
+  description: string;
+  images: string[];
+};
 
 function Products() {
-  const [value, setValue] = useState('');
-  const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [value, setValue] = useState<string>('');
+  const [products, setProducts] = useState<ProductData[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [productsPerPage] = useState(9);
 
   const handleChange = (value: string) => {
@@ -27,12 +44,12 @@ function Products() {
       });
 
       setProducts(
-        result.data.map((raw) => ({
+        result.data.map((raw: ProductType) => ({
           id: raw.id,
           title: raw.title,
           contentSlot: raw.price,
           captionSlot: raw.category.name,
-          image: raw.images[0],
+          images: raw.images,
           subTitle: raw.description,
         })),
       );
@@ -81,7 +98,7 @@ function Products() {
               className="products__item"
               key={product.id}
               title={product.title}
-              image={product.image}
+              image={product.images[0]}
               subtitle={product.subTitle}
               captionSlot={product.captionSlot}
               contentSlot={`$${product.contentSlot}`}
