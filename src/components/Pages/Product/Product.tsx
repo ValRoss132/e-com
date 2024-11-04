@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ProductData, ProductType } from '../Products';
+import { ProductType } from '../Products';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import ArrowDownIcon from '../../icons/ArrowDownIcon';
@@ -13,10 +13,19 @@ export type Filter = {
   category: { id: number };
 };
 
+type ProductData = {
+  id: number;
+  title: string;
+  price: number;
+  category: { name: string };
+  description: string;
+  images: string[];
+};
+
 const Product = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState({});
-  const [relatedItems, setRelatedItem] = useState([]);
+  const [product, setProduct] = useState<ProductType>();
+  const [relatedItems, setRelatedItem] = useState<ProductData[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -29,14 +38,14 @@ const Product = () => {
         url: 'https://api.escuelajs.co/api/v1/products',
       });
 
-      setRelatedItem(res.data.filter((item) => item.category.id === result.data.category.id).slice(0, 3));
+      setRelatedItem(res.data.filter((item: Filter) => item.category.id === result.data.category.id).slice(0, 3));
       setProduct(result.data);
     };
 
     fetch();
   }, [id]);
 
-  if (JSON.stringify(product) === JSON.stringify({}))
+  if (JSON.stringify(product) === JSON.stringify({}) || product === undefined)
     return (
       <div className="load">
         <Loader />
@@ -91,9 +100,9 @@ const Product = () => {
                 key={item.id}
                 title={item.title}
                 image={item.images[0]}
-                subtitle={item.subTitle}
-                captionSlot={item.captionSlot}
-                contentSlot={`$${item.contentSlot}`}
+                subtitle={item.description}
+                captionSlot={item.category.name}
+                contentSlot={`$${item.price}`}
                 actionSlot={<Button>Buy Now</Button>}
               />
             ))}
