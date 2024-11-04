@@ -30,7 +30,7 @@ const Product = () => {
     };
 
     fetch();
-  }, []);
+  }, [id]);
 
   if (JSON.stringify(product) === JSON.stringify({}))
     return (
