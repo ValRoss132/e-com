@@ -47,7 +47,7 @@ function Products() {
   const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
   return (
-    <div className="page-wrapper">
+    <div className="products-wrapper wrapper">
       <div className="info">
         <Text className="info__title" view="title">
           Products

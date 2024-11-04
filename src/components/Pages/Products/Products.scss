@@ -1,12 +1,6 @@
 @import url(../../../styles/variables.css);
 
-body {
-    // background-color: #ffffff55;
-    max-width: 85%;
-    margin: 0 auto;
-}
-
-.page-wrapper {
+.products-wrapper {
     display: flex;
     flex-direction: column;
     gap: 48px;

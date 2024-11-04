@@ -40,7 +40,7 @@ const Product = () => {
     );
 
   return (
-    <div className="wrapper">
+    <div className="product-wrapper wrapper">
       <Link to="/">
         <div className="backBtn">
           <div className="backBtn__icon">

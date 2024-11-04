@@ -1,6 +1,15 @@
 :root {
   background-color: rgba(239, 239, 239, 0.499);
+}
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 a,

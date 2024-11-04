@@ -1,10 +1,14 @@
 header {
-    display: flex;
-    justify-content: space-around;
-    height: 90px;
-    width: 100%;
     background-color: #ffffff;
+    height: 90px;
     margin-bottom: 100px;
+    width: 100%;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+
 }
 
 .logo {
