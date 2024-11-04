@@ -7,6 +7,7 @@ import Text from '../../Text';
 import './Products.scss';
 import MultiDropdown from '../../MultiDropdown';
 import Pagination from '../../Pagination';
+import ArrowDownIcon from '../../icons/ArrowDownIcon';
 
 function Products() {
   const [value, setValue] = useState('');

@@ -1,6 +1,12 @@
 @import url('../../Styles/variables.css');
 
 .pagination {
+    &__list {
+        align-items: center;
+    }
+    .page-item {
+        height: 100%;
+    }
     .page-link{
         font-size: 18px;
     }
@@ -8,7 +14,9 @@
         background: var(--color-brand);
     }
     .active .page-link {
-
         color: var(--text-color-w);
+    }
+    .arrowRight {
+        transform: rotate(180deg);
     }
 }
