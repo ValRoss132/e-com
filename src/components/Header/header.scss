@@ -2,13 +2,11 @@ header {
     background-color: #ffffff;
     height: 90px;
     margin-bottom: 100px;
-    width: 100%;
 }
 
 .header-wrapper {
     display: flex;
     justify-content: space-between;
-
 }
 
 .logo {
@@ -29,7 +27,7 @@ header {
         padding: 0;
         display: flex;
         justify-content: space-between;
-        gap: 20px;
+        gap: 44px;
         list-style: none;
     }
     &__item {
