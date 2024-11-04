@@ -7,6 +7,17 @@
   "scripts": {
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --fix"
+},
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "components": ["components/*"],
+      "config": ["config/*"],
+      "styles": ["styles/*"],
+      "utils": ["utils/*"]
+    }
+  }
 }
+
   
-}
+
