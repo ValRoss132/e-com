@@ -3,13 +3,14 @@ import Logo from '../icons/Logo';
 import { Link } from 'react-router-dom';
 
 import './header.scss';
+import Lalasia from '../icons/Lalasia';
 
 const Header = () => (
   <header className="header">
     <div className="header-wrapper wrapper">
       <div className="logo">
         <Logo className="logo__icon" width={42} height={42} />
-        <span className="logo__text">Lalasia</span>
+        <Lalasia className="logo__text" width={76} height={19} />
       </div>
       <nav className="menu">
         <ul className="menu__list">
