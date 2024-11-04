@@ -4,7 +4,7 @@ import Card from '../../Card';
 import Button from '../../Button';
 import Input from '../../Input';
 import Text from '../../Text';
-import './Products.scss';
+import classes from './Products.module.scss';
 import MultiDropdown from '../../MultiDropdown';
 import Pagination from '../../Pagination';
 
@@ -65,37 +65,43 @@ function Products() {
   const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
   return (
-    <div className="products-wrapper wrapper">
-      <div className="info">
-        <Text className="info__title" view="title">
+    <div className={`${classes.productsWrapper} wrapper`}>
+      <div className={classes.info}>
+        <Text className={classes.title} view="title">
           Products
         </Text>
-        <Text className="info__content" view="p-20">
+        <Text className={classes.content} view="p-20">
           We display products based on the latest products we have, if you want <br />
           to see our old products please enter the name of the item
         </Text>
       </div>
-      <div className="search-wrapper">
-        <search className="search">
+      <div className={classes.searchWrapper}>
+        <search className={classes.search}>
           <Input className="search__input" value={value} onChange={handleChange} placeholder="Search Product"></Input>
-          <Button className="search__button" loading={false}>
+          <Button className={classes.button} loading={false}>
             Find Now
           </Button>
         </search>
-        <MultiDropdown className="dropDown" value={[]} getTitle={() => 'Filter'} onChange={() => null} options={[]} />
+        <MultiDropdown
+          className={classes.dropDown}
+          value={[]}
+          getTitle={() => 'Filter'}
+          onChange={() => null}
+          options={[]}
+        />
       </div>
-      <div className="products">
-        <div className="products__total">
-          <Text className="products__total-text" view="title">
+      <div className={classes.products}>
+        <div className={classes.total}>
+          <Text className={classes.text} view="title">
             Total Product
           </Text>
-          <span className="products__total-value">{products.length}</span>
+          <span className={classes.value}>{products.length}</span>
         </div>
-        <div className="products__items">
+        <div className={classes.items}>
           {currentProducts.map((product) => (
             <Card
               url={`/product/${product.id}`}
-              className="products__item"
+              className={classes.item}
               key={product.id}
               title={product.title}
               image={product.images[0]}
@@ -106,7 +112,7 @@ function Products() {
             />
           ))}
         </div>
-        <div className="products__pagination">
+        <div className={classes.pagination}>
           <Pagination
             productsPerPage={productsPerPage}
             totalProducts={products.length}

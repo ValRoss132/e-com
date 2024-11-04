@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import ArrowDownIcon from '../../icons/ArrowDownIcon';
 import Text from '../../Text';
-import './Product.scss';
+import classes from './Product.module.scss';
 import Button from '../../Button';
 import Card from '../../Card';
 import Loader from '../../Loader';
@@ -47,31 +47,32 @@ const Product = () => {
 
   if (JSON.stringify(product) === JSON.stringify({}) || product === undefined)
     return (
-      <div className="load">
+      <div className={classes.load}>
         <Loader />
       </div>
     );
 
   return (
-    <div className="product-wrapper wrapper">
+    <div className={`${classes.productWrapper} wrapper`}>
       <Link to="/">
-        <div className="backBtn">
-          <div className="backBtn__icon">
+        <div className={classes.backBtn}>
+          <div className={classes.icon}>
             <ArrowDownIcon width={32} height={32} viewBox="0 0 24 24" color="primary" />
           </div>
-          <div className="backBtn__text">Назад</div>
+          <div className={classes.text}>Назад</div>
         </div>
       </Link>
-      <div className="product-container">
-        <div className="container">
-          <div className="container__image">
+      <div className={classes.productContainer}>
+        <div className={classes.container}>
+          <div className={classes.imageContainer}>
             <img
-              className="product-image"
+              className={classes.image}
+              src={product.images[0]}
               style={{ background: `no-repeat center/contain url(${product.images[0]})` }}
             />
           </div>
-          <div className="content">
-            <div className="content__text">
+          <div className={classes.content}>
+            <div className={classes.contentText}>
               <Text className="content__title" view="title">
                 {product.title}
               </Text>
@@ -79,24 +80,24 @@ const Product = () => {
                 {product.description}
               </Text>
             </div>
-            <div className="action-container">
-              <span className="action-container__price">{`$${product.price}`}</span>
-              <div className="btns">
+            <div className={classes.actionContainer}>
+              <span className={classes.price}>{`$${product.price}`}</span>
+              <div className={classes.btns}>
                 <Button className="btns__buy">Buy Now</Button>
-                <Button className="btns__add">Add to Cart</Button>
+                <Button className={classes.addBtn}>Add to Cart</Button>
               </div>
             </div>
           </div>
         </div>
-        <div className="relatedItem">
+        <div className={classes.relatedItem}>
           <Text className="relatedItem__text" view="title">
             Realted Item
           </Text>
-          <div className="relatedItem__items">
+          <div className={classes.relatedItems}>
             {relatedItems.map((item) => (
               <Card
                 url={`/product/${item.id}`}
-                className="products__item"
+                className={classes.productItem}
                 key={item.id}
                 title={item.title}
                 image={item.images[0]}

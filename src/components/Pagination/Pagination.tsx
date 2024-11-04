@@ -1,5 +1,5 @@
 import React from 'react';
-import './Pagination.scss';
+import classes from './Pagination.module.scss';
 import { Link } from 'react-router-dom';
 import ArrowRightIcon from '../icons/ArrowRightIcon';
 
@@ -30,11 +30,11 @@ const Pagination: React.FC<Pagination> = ({ productsPerPage, totalProducts, pagi
   }
 
   return (
-    <div className="pagination">
-      <ul className="pagination__list" style={{ display: 'flex' }}>
+    <div className={classes.pagination}>
+      <ul className={classes.list}>
         {currentPage > 1 && (
-          <li className="page-item">
-            <Link to="/" className="page-link" onClick={() => paginate(currentPage - 1)}>
+          <li className={classes.pageItem}>
+            <Link to="/" className={classes.pageLink} onClick={() => paginate(currentPage - 1)}>
               <ArrowRightIcon className="arrowLeft" color="primary" width={32} height={32} viewBox="0 0 32 32" />
             </Link>
           </li>
@@ -42,14 +42,14 @@ const Pagination: React.FC<Pagination> = ({ productsPerPage, totalProducts, pagi
         {pageNumbers.map((number, index) => {
           if (number === null) {
             return (
-              <li className="page-item disabled" key={index}>
-                <span className="page-link">...</span>
+              <li className={`${classes.pageItem} disabled`} key={index}>
+                <span className={classes.pageLink}>...</span>
               </li>
             );
           } else {
             return (
-              <li className={`page-item ${number == currentPage ? 'active' : ''}`} key={index}>
-                <Link to="/" className={`page-link`} onClick={() => paginate(number)}>
+              <li className={`${classes.pageItem} ${number == currentPage ? classes.active : ''}`} key={index}>
+                <Link to="/" className={classes.pageLink} onClick={() => paginate(number)}>
                   {number}
                 </Link>
               </li>
@@ -57,9 +57,15 @@ const Pagination: React.FC<Pagination> = ({ productsPerPage, totalProducts, pagi
           }
         })}
         {currentPage < totalPages && (
-          <li className="page-item">
-            <Link to="/" className="page-link" onClick={() => paginate(currentPage + 1)}>
-              <ArrowRightIcon className="arrowRight" color="primary" width={32} height={32} viewBox="0 0 32 32" />
+          <li className={classes.pageItem}>
+            <Link to="/" className={classes.pageLink} onClick={() => paginate(currentPage + 1)}>
+              <ArrowRightIcon
+                className={classes.arrowRight}
+                color="primary"
+                width={32}
+                height={32}
+                viewBox="0 0 32 32"
+              />
             </Link>
           </li>
         )}

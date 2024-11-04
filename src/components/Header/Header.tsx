@@ -1,27 +1,26 @@
 import Icon from '../icons/Icon';
 import Logo from '../icons/Logo';
 import { Link } from 'react-router-dom';
-
-import './header.scss';
+import classes from './header.module.scss';
 import Lalasia from '../icons/Lalasia';
 
 const Header = () => (
-  <header className="header">
-    <div className="header-wrapper wrapper">
-      <div className="logo">
-        <Logo className="logo__icon" width={42} height={42} />
-        <Lalasia className="logo__text" width={76} height={19} />
+  <header className={classes.header}>
+    <div className={`${classes.headerWrapper} wrapper`}>
+      <div className={classes.logo}>
+        <Logo className={classes.logoIcon} width={42} height={42} />
+        <Lalasia className={classes.logoText} width={76} height={19} />
       </div>
-      <nav className="menu">
-        <ul className="menu__list">
-          <li className="menu__item">
+      <nav className={classes.menu}>
+        <ul className={classes.menuList}>
+          <li className={classes.menuItem}>
             <Link to="/">Products</Link>
           </li>
-          <li className="menu__item">Categories</li>
-          <li className="menu__item">About us</li>
+          <li className={classes.menuItem}>Categories</li>
+          <li className={classes.menuItem}>About us</li>
         </ul>
       </nav>
-      <nav className="menu-icons">
+      <nav className={classes.menuIcons}>
         <Icon className="menu-icons__bag" width={30} height={30}>
           <path
             d="M9.375 9.58751V8.37501C9.375 5.56251 11.6375 2.80001 14.45 2.53751C17.8 2.21251 20.625 4.85001 20.625 8.13751V9.86251"

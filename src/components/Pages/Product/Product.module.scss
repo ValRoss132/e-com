@@ -14,17 +14,17 @@
     align-items: stretch;
     gap: var(--space-xs);
     max-width: 130px;
-    &__icon {
+    .icon {
         transform: rotate(90deg);
     }
-    &__text {
+    .text {
         font-size: 20px;
         line-height: 24px;
         align-self: center;
     }
 }
 
-.product-container {
+.productContainer {
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
@@ -33,10 +33,10 @@
 .container {
     display: flex;
     gap: var(--space-xl);
-    &__image {
+    .imageContainer {
         width: 600px;
         height: 600px;
-        .product-image {
+        .image {
             width: 600px;
             height: 600px;
         }
@@ -45,18 +45,18 @@
         display: flex;
         flex-direction: column;
         gap: 48px;
-        &__text {
+        .contentText {
             display: flex;
             flex-direction: column;
             gap: var(--space-m);
         }
     }
-    .action-container {
+    .actionContainer {
         display: flex;
         flex-direction: column;
         gap: var(--space-xl);
         max-width: 340px;
-        &__price {
+        .price {
             font-size: 44px;
             line-height: 48px;
             font-weight: 700;
@@ -64,7 +64,7 @@
         .btns {
             display: flex;
             justify-content: space-between;
-            &__add {
+            .addBtn {
                 background-color: #ffffff88;
                 color: var(--text-color-primary);
                 border: 1px solid rgba(175, 173, 181, 1);
@@ -77,8 +77,12 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    &__items {
+    .relatedItems {
         display: flex;
         justify-content: space-between;
+    }
+    .productItem {
+        flex: 0 33.33%;
+        max-width: 30%;
     }
 }

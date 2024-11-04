@@ -1,20 +1,21 @@
-header {
+.header {
     background-color: #ffffff;
     height: 90px;
     margin-bottom: 100px;
 }
 
-.header-wrapper {
+.headerWrapper {
     display: flex;
     justify-content: space-between;
 }
 
 .logo {
     display: flex;
-    &__icon {
+    align-items: center;
+    logoIcon {
         align-self: center;
     }
-    &__text {
+    logoText {
         font-weight: bold;
         align-self: center;
     }
@@ -23,20 +24,20 @@ header {
 .menu {
     margin: auto 0;
     min-width: 350px;
-    &__list {
+    .menuList {
         padding: 0;
         display: flex;
         justify-content: space-between;
         gap: 44px;
         list-style: none;
     }
-    &__item {
+    menuItem {
         font-size: 18px;
         display: block;
     }
 }
 
-.menu-icons { 
+.menuIcons { 
     display: flex;
     justify-content: space-between;
     min-width: 84px;

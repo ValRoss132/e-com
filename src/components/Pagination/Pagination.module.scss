@@ -1,19 +1,20 @@
 @import url('../../Styles/variables.css');
 
 .pagination {
-    &__list {
+    .list {
+        display: flex;
         align-items: center;
     }
-    .page-item {
+    .pageItem {
         height: 100%;
     }
-    .page-link{
+    .pageLink{
         font-size: 18px;
     }
     .active {
         background: var(--color-brand);
     }
-    .active .page-link {
+    .active .pageLink {
         color: var(--text-color-w);
     }
     .arrowRight {
