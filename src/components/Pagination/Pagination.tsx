@@ -17,10 +17,6 @@ const Pagination: React.FC<Pagination> = ({ productsPerPage, totalProducts, pagi
   const startPage = Math.max(1, currentPage - 1);
   const endPage = Math.min(totalPages, currentPage + 2);
 
-  // if (startPage > 1) {
-  //   pageNumbers.push(1);
-  //   pageNumbers.push(null);
-  // }
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
   }

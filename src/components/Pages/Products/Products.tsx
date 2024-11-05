@@ -26,11 +26,12 @@ export type ProductType = {
   images: string[];
 };
 
+const productsPerPage = 9;
+
 function Products() {
   const [value, setValue] = useState<string>('');
   const [products, setProducts] = useState<ProductData[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [productsPerPage] = useState(9);
 
   const handleChange = (value: string) => {
     setValue(value);

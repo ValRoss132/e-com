@@ -40,7 +40,6 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
 
       const isClickOutsideOfDialog = !(isClickOnDialog || isClickOnDialogChildrenNodes);
       if (isClickOutsideOfDialog && isOpen) {
-        // console.log('Outside');
         setIsOpen(false);
       }
     };
@@ -55,7 +54,6 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
 
   const handleToggleDropDown = (event: React.MouseEvent<Element, MouseEvent>) => {
     if (disabled) return;
-    // console.log('Toggle');
     event.stopPropagation();
     setIsOpen(true);
     if (inputRef.current) {

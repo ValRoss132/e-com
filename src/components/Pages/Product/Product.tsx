@@ -29,17 +29,15 @@ const Product = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const result = await axios({
-        method: 'get',
-        url: 'https://api.escuelajs.co/api/v1/products/' + `${id}`,
-      });
-      const res = await axios({
-        method: 'get',
-        url: 'https://api.escuelajs.co/api/v1/products',
-      });
+      const result = await Promise.all([
+        axios.get(`https://api.escuelajs.co/api/v1/products/${id}`),
+        axios.get('https://api.escuelajs.co/api/v1/products'),
+      ]);
 
-      setRelatedItem(res.data.filter((item: Filter) => item.category.id === result.data.category.id).slice(0, 3));
-      setProduct(result.data);
+      setRelatedItem(
+        result[1].data.filter((item: Filter) => item.category.id === result[0].data.category.id).slice(0, 3),
+      );
+      setProduct(result[0].data);
     };
 
     fetch();

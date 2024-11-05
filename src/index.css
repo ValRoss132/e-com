@@ -1,5 +1,7 @@
+@import url('styles/variables.css');
+
 :root {
-  background-color: rgba(239, 239, 239, 0.499);
+  background-color: var(--bg-color);
 }
 
 body {
@@ -16,7 +18,7 @@ a,
 a:hover,
 a:active {
   text-decoration: none;
-  color: black;
+  color: var(--text-color-primary);
 }
 
 button {
@@ -24,5 +26,4 @@ button {
   border: none;
   font: inherit;
   color: inherit;
-
 }

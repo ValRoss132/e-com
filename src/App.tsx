@@ -1,11 +1,9 @@
-import './App.scss';
 import Products from './components/Pages/Products';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Product from './components/Pages/Product';
 
 function App() {
-  console.log();
   return (
     <BrowserRouter>
       <Header />
@@ -14,6 +12,7 @@ function App() {
         <Route path="/product">
           <Route path=":id" element={<Product />} />
         </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

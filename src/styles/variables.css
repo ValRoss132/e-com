@@ -28,4 +28,6 @@
 	--checkbox-bg-disabled: rgba(255, 255, 255, 0.5);
 	--checkbox-border-disabled: #FFFFFF00;
 	--checkbox-check-disabled: #00000033;
+	--bg-color: #dedede;
+	--header-bg: #ffffff;
 }

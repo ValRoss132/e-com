@@ -1,5 +1,7 @@
+@import url('styles/variables.css');
+
 .header {
-    background-color: #ffffff;
+    background-color: var(--header-bg);
     height: 90px;
     margin-bottom: 100px;
 }

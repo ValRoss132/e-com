@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+// import cn from 'classnames'
 import './Text.css';
 
 export type TextProps = {

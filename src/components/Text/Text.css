@@ -1,7 +1,11 @@
-@import url('../../styles/variables.css');
+@import url('styles/variables.css');
 
 .text {
 	color: inherit;
+	display: '-webkit-box';
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--max-lines);
+    overflow: hidden;
 }
 
 .weight-normal {
@@ -69,8 +73,3 @@
 	color: var(--text-color-primary);
 }
 
-/* .maxLinesStyle {
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-} */
