@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import React from 'react';
 import Input from '../Input';
 import ArrowDownIcon from '../icons/ArrowDownIcon';
-import './MultiDropDown.css';
+import classes from './MultiDropDown.module.scss';
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */
@@ -83,7 +83,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
   }, [value, getTitle]);
 
   return (
-    <div className={`multi-dropdown ${className}`}>
+    <div className={`${classes.multiDropDown} ${className || ''}`}>
       <div className="multi-dropdown_input-wrapper" onClick={(e) => handleToggleDropDown(e)}>
         <Input
           type="text"
@@ -98,11 +98,11 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
       </div>
       {isOpen && !disabled && (
         <div>
-          <ul className="multi-dropdown__options" ref={dropdownRef}>
+          <ul className={classes.options} ref={dropdownRef}>
             {filteredOptions.map((option) => (
               <li
                 key={option.key}
-                className={`multi-dropdown_option ${value.some((v) => v.key === option.key) ? 'selected' : ''}`}
+                className={`${classes.option} ${value.some((v) => v.key === option.key) ? classes.selected : ''}`}
                 onClick={() => handleOptionClick(option)}
               >
                 {option.value}

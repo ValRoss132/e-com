@@ -27,3 +27,8 @@ button {
   font: inherit;
   color: inherit;
 }
+
+ul {
+  list-style-type: none;
+	padding-left: 0;
+}

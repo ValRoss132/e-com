@@ -2,7 +2,7 @@ import React from 'react';
 import Loader from '../Loader';
 import cn from 'classnames';
 import 'styles/variables.css';
-import './Button.css';
+import classes from './Button.module.scss';
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   /** Состояние загрузки */
@@ -14,7 +14,12 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 const Button: React.FC<ButtonProps> = ({ loading, disabled, children, className, ...props }) => {
   return (
     <button
-      className={cn('button', className, disabled && 'button--disabled', loading && 'button--loading')}
+      className={cn(
+        classes.button,
+        className,
+        disabled && classes['button--disabled'],
+        loading && classes['button--loading'],
+      )}
       disabled={loading || disabled}
       {...props}
     >

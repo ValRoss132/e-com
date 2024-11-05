@@ -1,8 +1,6 @@
 import React from 'react';
-
-import '../../styles/variables.css';
-
-import './Loader.css';
+import 'styles/variables.css';
+import classes from './Loader.module.scss';
 
 export type LoaderProps = {
   /** Размер */
@@ -14,7 +12,7 @@ export type LoaderProps = {
 
 const Loader: React.FC<LoaderProps> = ({ size = 'l', className, color = '#518581' }) => (
   <svg
-    className={`loader ${className ? className : ''} loader-${size}`}
+    className={`${classes.loader} ${className || ''} ${classes[`loader-${size}`]}`}
     viewBox="0 0 60 60"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

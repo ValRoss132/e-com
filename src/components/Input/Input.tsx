@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Input.css';
+import classes from './Input.module.scss';
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> & {
   /** Значение поля */
@@ -14,16 +14,16 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ value, onChange, afterSlot, className, ...props }, ref) => {
     return (
-      <div className={`input-wrapper ${className} ${afterSlot ? 'afterSlot' : ''}`}>
+      <div className={`${classes.inputWrapper} ${className || ''} ${afterSlot ? classes.afterSlot : ''}`}>
         <input
-          className={`input ${className}`}
+          className={classes.input}
           type="text"
           {...props}
           ref={ref}
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
-        {afterSlot && <div className="icon-wrapper">{afterSlot}</div>}
+        {afterSlot && <div className={classes.iconWrapper}>{afterSlot}</div>}
       </div>
     );
   },

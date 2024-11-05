@@ -1,5 +1,6 @@
 import * as React from 'react';
-import './icon.scss';
+import classes from './icon.module.scss';
+import cn from 'classnames';
 
 export type IconProps = React.SVGAttributes<SVGElement> & {
   className?: string;
@@ -16,7 +17,7 @@ const Icon: React.FC<React.PropsWithChildren<IconProps>> = ({
 }) => {
   return (
     <svg
-      className={`${color || ''} ${className || ''}`}
+      className={cn(className, color && classes[`${color}`])}
       width={width}
       height={height}
       fill="none"

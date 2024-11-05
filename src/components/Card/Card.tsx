@@ -1,9 +1,6 @@
 import React from 'react';
-
 import Text from '../Text';
-
-import './Card.css';
-
+import classes from './Card.module.scss';
 import '../../styles/styles.css';
 import { Link } from 'react-router-dom';
 
@@ -40,11 +37,11 @@ const Card: React.FC<CardProps> = ({
   url,
 }) => {
   return (
-    <div className={`card ${className}`} onClick={onClick}>
-      <Link className="link" to={url}></Link>
-      <img src={image} alt="" />
-      <div className="content-container">
-        <div className="text-container">
+    <div className={`${classes.card} ${className}`} onClick={onClick}>
+      <Link className={classes.link} to={url}></Link>
+      <img className={classes.img} src={image} alt="" />
+      <div className={classes.contentContainer}>
+        <div className={classes.textContainer}>
           {captionSlot && (
             <Text className="caption" view="p-14" weight="medium" color="secondary">
               {captionSlot}
@@ -58,11 +55,11 @@ const Card: React.FC<CardProps> = ({
           </Text>
         </div>
         {(contentSlot || actionSlot) && (
-          <div className="footer-container">
+          <div className={classes.footerContainer}>
             <Text className="content" view="p-18" weight="bold">
               {contentSlot}
             </Text>
-            {actionSlot && <>{actionSlot}</>}
+            {actionSlot && <div className={classes.button}>{actionSlot}</div>}
           </div>
         )}
       </div>

@@ -9,17 +9,17 @@
 	background-color: var(--card-bg);
 }
 
-img {
-	background-color: var(--card-img-bg);
-	width: 100%;
-	height: auto;
-}
-
 .card:hover {
 	box-shadow: 0 4px 10px 0 #00000040;
 }
 
-.content-container {
+.img {
+	background: var(--card-img-bg);
+	width: 100%;
+	height: auto;
+}
+
+.contentContainer {
 	margin-top: var(--space-xl);
 	display: flex;
 	flex-direction: column;
@@ -29,13 +29,13 @@ img {
 	padding: 0 var(--space-xs);
 }
 
-.text-container {
+.textContainer {
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-xxs);
 }
 
-.footer-container {
+.footerContainer {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -44,6 +44,7 @@ img {
 .button {
 	position: relative;
 }
+
 .link::after {
 	content: '';
 	inset: 0;

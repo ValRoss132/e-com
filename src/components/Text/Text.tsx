@@ -1,6 +1,6 @@
 import * as React from 'react';
-// import cn from 'classnames'
-import './Text.css';
+import cn from 'classnames';
+import classes from './Text.module.scss';
 
 export type TextProps = {
   /** Дополнительный класс */
@@ -21,18 +21,22 @@ export type TextProps = {
 
 const Text: React.FC<TextProps> = ({ className, view, tag = 'p', weight, children, color, maxLines }) => {
   const Component = tag;
-  const viewStyle = view ? `view-${view}` : '';
-  const weightStyle = weight ? `weight-${weight}` : '';
-  const colorStyle = color ? `color-${color}` : '';
-  const container = {
-    display: '-webkit-box',
-    WebkitBoxOrient: 'vertical',
-    WebkitLineClamp: `${maxLines}`,
-    overflow: 'hidden',
-  };
-  const maxLinesStyle = maxLines ? container : {};
+
   return (
-    <Component className={`text ${className} ${viewStyle} ${weightStyle} ${colorStyle}`} style={{ ...maxLinesStyle }}>
+    <Component
+      className={cn(
+        classes.text,
+        className,
+        view && classes[`view-${view}`],
+        weight && classes[`weight-${weight}`],
+        color && classes[`color-${color}`],
+      )}
+      style={
+        {
+          ['--max-lines']: maxLines,
+        } as React.CSSProperties
+      }
+    >
       {children}
     </Component>
   );
