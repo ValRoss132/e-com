@@ -1,0 +1,33 @@
+:root {
+    --space-xl: 24px;
+    --space-l: 20px;
+    --space-m: 16px;
+    --space-s: 14px;
+    --space-xs: 12px;
+    --space-xxs: 8px;
+    --color-brand: #518581;
+    --color-brandHover: #86AAA7;
+    --color-brandActive: #487773;
+	--text-color-primary: #000000;
+	--text-color-secondary: #AFADB5;
+	--text-color-accent: #518581;
+	--text-color-w: #ffffff;
+	--button-primary-text: #ffffff;
+	--button-disabled: #D9D9D9;
+	--card-bg: #ffffff;
+	--card-img-bg: #D9D9D9;
+	--input-border: #ffffff;
+	--input-bg: #ffffff;
+	--input-border-focus: #518581;
+	--input-text-disable: #00000033;
+	--dropdown-options: #ffffff;
+	--dropdown-options-shadow: #00000040;
+	--checkbox-bg: #ffffff;
+	--checkbox-border-hover: #518581;
+	--checkbox-check-hover: #518581;
+	--checkbox-bg-disabled: rgba(255, 255, 255, 0.5);
+	--checkbox-border-disabled: #FFFFFF00;
+	--checkbox-check-disabled: #00000033;
+	--bg-color: #dedede;
+	--header-bg: #ffffff;
+}

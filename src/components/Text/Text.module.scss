@@ -1,0 +1,75 @@
+@import url('styles/variables.css');
+
+.text {
+	color: inherit;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: var(--max-lines);
+	overflow: hidden;
+}
+
+.weight-normal {
+	font-weight: 400 !important;
+}
+
+.weight-medium {
+	font-weight: 500 !important;
+}
+
+.weight-bold {
+	font-weight: 700 !important;
+}
+
+.color-primary {
+	color: var(--text-color-primary) !important;
+}
+
+.color-secondary {
+	color: var(--text-color-secondary) !important;
+}
+
+.color-accent {
+	color: var(--text-color-accent) !important;
+}
+
+.view-title {
+	line-height: 48px;
+	font-size: 44px;
+	font-weight: 700;
+	color: var(--text-color-primary);
+}
+
+.view-button {
+	font-size: 18px;
+	font-weight: 400;
+	color: var(--text-color-primary);
+}
+
+.view-p-20 {
+	line-height: 24px;
+	font-size: 20px;
+	font-weight: 400;
+	color: var(--text-color-primary);
+}
+
+.view-p-18 {
+	line-height: 22px;
+	font-size: 18px;
+	font-weight: 400;
+	color: var(--text-color-primary);
+}
+
+.view-p-16 {
+	line-height: 20px;
+	font-size: 16px;
+	font-weight: 400;
+	color: var(--text-color-primary);
+}
+
+.view-p-14 {
+	line-height: 18px;
+	font-size: 14px;
+	font-weight: 400;
+	color: var(--text-color-primary);
+}
+

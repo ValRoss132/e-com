@@ -1,0 +1,49 @@
+@import url('styles/variables.css');
+
+.header {
+    background-color: var(--header-bg);
+    height: 90px;
+    margin-bottom: 100px;
+}
+
+.headerWrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    logoIcon {
+        align-self: center;
+    }
+    logoText {
+        font-weight: bold;
+        align-self: center;
+    }
+}
+
+.menu {
+    margin: auto 0;
+    min-width: 350px;
+    .menuList {
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 44px;
+        list-style: none;
+    }
+    menuItem {
+        font-size: 18px;
+        display: block;
+    }
+}
+
+.menuIcons { 
+    display: flex;
+    justify-content: space-between;
+    min-width: 84px;
+    align-items: center;
+}
+

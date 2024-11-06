@@ -1,0 +1,23 @@
+@import url('../../Styles/variables.css');
+
+.pagination {
+    .list {
+        display: flex;
+        align-items: center;
+    }
+    .pageItem {
+        height: 100%;
+    }
+    .pageLink{
+        font-size: 18px;
+    }
+    .active {
+        background: var(--color-brand);
+    }
+    .active .pageLink {
+        color: var(--text-color-w);
+    }
+    .arrowRight {
+        transform: rotate(180deg);
+    }
+}
