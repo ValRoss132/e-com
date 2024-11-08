@@ -5,6 +5,7 @@
 	font-family: sans-serif;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	padding-bottom: var(--space-xl);
 	background-color: var(--card-bg);
 }
@@ -17,6 +18,12 @@
 	background: var(--card-img-bg);
 	width: 100%;
 	height: auto;
+}
+
+.def { 
+	width: 100%;
+	background-color: grey;
+	aspect-ratio: 1 / 1;
 }
 
 .contentContainer {
