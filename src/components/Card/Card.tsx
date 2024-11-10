@@ -41,7 +41,7 @@ const Card: React.FC<CardProps> = ({
     <div className={`${classes.card} ${className}`} onClick={onClick}>
       <Link className={classes.link} to={url}></Link>
       <div className={!isImageLoaded ? classes.def : ''}>
-        <img className={classes.img} src={image} alt=" " onLoad={() => setIsImageLoaded(true)} />
+        <img className={classes.img} src={image} alt="" onLoad={() => setIsImageLoaded(true)} />
       </div>
       <div className={classes.contentContainer}>
         <div className={classes.textContainer}>
