@@ -16,11 +16,12 @@ export default class ApiStore  {
 
     constructor(private url: string) {}
 
-    async request<T>( options: {method: HTTPMethod, url?: string}): Promise<ApiResponse<T>> {
+    async request<T>( options: {method: HTTPMethod, url: string}): Promise<ApiResponse<T>> {
+        const url = this.url + options.url
         try {
             const response = await axios({
                 method: options.method,
-                url: this.url
+                url
             })
             return {success: true, data: response.data}
         } catch {

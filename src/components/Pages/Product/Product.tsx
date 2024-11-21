@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ProductType } from '../Products';
+// import { ProductType } from '../Products';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import ArrowDownIcon from '../../icons/ArrowDownIcon';
@@ -8,24 +8,16 @@ import classes from './Product.module.scss';
 import Button from '../../Button';
 import Card from '../../Card';
 import Loader from '../../Loader';
+import { ProductType } from '../../../store/ProductsStore/types';
 
 export type Filter = {
   category: { id: number };
 };
 
-type ProductData = {
-  id: number;
-  title: string;
-  price: number;
-  category: { name: string };
-  description: string;
-  images: string[];
-};
-
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<ProductType>();
-  const [relatedItems, setRelatedItem] = useState<ProductData[]>([]);
+  const [relatedItems, setRelatedItem] = useState<ProductType[]>([]);
 
   useEffect(() => {
     const fetch = async () => {

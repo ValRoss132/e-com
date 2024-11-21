@@ -1,29 +1,45 @@
-import { computed, makeObservable, observable } from "mobx";
+import { action, computed, makeObservable, observable } from "mobx";
 import { Meta } from "../../utils/meta";
-import { ProductType } from "./types";
+import { IProductStore, ProductType } from "./types";
 import ApiStore from "../ApiStore";
 import { ApiResponse, HTTPMethod } from "../ApiStore/ApiStore";
 
 const BASE_URL = 'https://api.escuelajs.co/api/v1/products';
 
-type PrivateFields = "_list" | "_meta";
+type PrivateFields = "_list" | "_meta" | "_item";
 
-export default class ProductsStore {
+export default class ProductsStore implements IProductStore {
     private readonly _apistore = new ApiStore(BASE_URL);
 
-    private _list: ProductType[] | undefined = [];
+    private _item: ProductType = {
+        id: NaN,
+        title: '',
+        price: NaN,
+        description: '',
+        images: [],
+        category: {id: NaN, name: '', image: ''}
+    };
+    private _list: ProductType[] = [];
     private _meta: Meta = Meta.initial;
 
     constructor() {
         makeObservable<ProductsStore, PrivateFields>(this, {
+            _item: observable,
             _list: observable,
             _meta: observable,
+            item: computed,
             list: computed,
-            meta: computed
+            meta: computed,
+            getProductList: action,
+            getProductById: action
         })
     }
 
-    get list(): ProductType[] | undefined {
+    get item(): ProductType {
+        return this._item
+    }
+
+    get list(): ProductType[] {
         return this._list;
     }
 
@@ -37,14 +53,36 @@ export default class ProductsStore {
 
         const response: ApiResponse<ProductType[]> = await this._apistore.request({
             method: HTTPMethod.GET,
+            url: ''
         })
 
-        if (response.success) {
+        if (response.success && response.data) {
             this._meta = Meta.success;
             this._list = response.data;
-            return;
         } else {
             this._meta = Meta.error;
+        }
+    }
+
+    async getProductById(id: number): Promise<void> {
+        this._meta = Meta.loading;
+        this._item = {
+            id: NaN,
+            title: '',
+            price: NaN,
+            description: '',
+            images: [],
+            category: {id: NaN, name: '', image: ''}
+        };
+        const response: ApiResponse<ProductType> = await this._apistore.request({
+            method: HTTPMethod.GET,
+            url: `/${id}`
+        })
+        if (response.success && response.data) {
+            this._meta = Meta.success;
+            this._item = response.data;
+        } else {
+            this._meta = Meta.error
         }
     }
 

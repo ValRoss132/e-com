@@ -1,5 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Card from '../../Card';
 import Button from '../../Button';
 import Input from '../../Input';
@@ -7,61 +7,29 @@ import Text from '../../Text';
 import classes from './Products.module.scss';
 import MultiDropdown from '../../MultiDropdown';
 import Pagination from '../../Pagination';
-
-export type ProductData = {
-  id: number;
-  title: string;
-  contentSlot: number;
-  subTitle: string;
-  images: string[];
-  captionSlot: string;
-};
-
-export type ProductType = {
-  id: number;
-  title: string;
-  price: number;
-  category: { name: string };
-  description: string;
-  images: string[];
-};
+import { observer } from 'mobx-react-lite';
+import ProductsStore from '../../../store/ProductsStore';
+import { useLocalStore } from '../../../utils/useLocalStore';
 
 const productsPerPage = 9;
 
-function Products() {
+const Products: React.FC = () => {
+  const productsStore = useLocalStore(() => new ProductsStore());
+
+  useEffect(() => {
+    productsStore.getProductList();
+  }, [productsStore]);
+
   const [value, setValue] = useState<string>('');
-  const [products, setProducts] = useState<ProductData[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleChange = (value: string) => {
     setValue(value);
   };
 
-  useEffect(() => {
-    const fetch = async () => {
-      const result = await axios({
-        method: 'get',
-        url: 'https://api.escuelajs.co/api/v1/products',
-      });
-
-      setProducts(
-        result.data.map((raw: ProductType) => ({
-          id: raw.id,
-          title: raw.title,
-          contentSlot: raw.price,
-          captionSlot: raw.category.name,
-          images: raw.images,
-          subTitle: raw.description,
-        })),
-      );
-    };
-
-    fetch();
-  }, []);
-
   const lastProductsIndex = currentPage * productsPerPage;
   const firstProductsIndex = lastProductsIndex - productsPerPage;
-  const currentProducts = products.slice(firstProductsIndex, lastProductsIndex);
+  const currentProducts = productsStore.list.slice(firstProductsIndex, lastProductsIndex);
 
   const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
@@ -96,7 +64,7 @@ function Products() {
           <Text className={classes.text} view="title">
             Total Product
           </Text>
-          <span className={classes.value}>{products.length}</span>
+          <span className={classes.value}>{productsStore.list.length}</span>
         </div>
         <div className={classes.items}>
           {currentProducts.map((product) => (
@@ -106,9 +74,9 @@ function Products() {
               key={product.id}
               title={product.title}
               image={product.images[0]}
-              subtitle={product.subTitle}
-              captionSlot={product.captionSlot}
-              contentSlot={`$${product.contentSlot}`}
+              subtitle={product.description}
+              captionSlot={product.category.name}
+              contentSlot={`$${product.price}`}
               actionSlot={<Button>Buy Now</Button>}
             />
           ))}
@@ -116,7 +84,7 @@ function Products() {
         <div className={classes.pagination}>
           <Pagination
             productsPerPage={productsPerPage}
-            totalProducts={products.length}
+            totalProducts={productsStore.list.length}
             paginate={paginate}
             currentPage={currentPage}
           />
@@ -124,6 +92,6 @@ function Products() {
       </div>
     </div>
   );
-}
+};
 
-export default Products;
+export default observer(Products);
