@@ -64,7 +64,7 @@ export default class ProductsStore implements IProductStore {
         }
     }
 
-    async getProductById(id: number): Promise<void> {
+    async getProductById(id: string): Promise<void> {
         this._meta = Meta.loading;
         this._item = {
             id: NaN,
@@ -83,6 +83,22 @@ export default class ProductsStore implements IProductStore {
             this._item = response.data;
         } else {
             this._meta = Meta.error
+        }
+    }
+
+    async getRelatedProducts(categoryId: number): Promise<void> {
+        this._meta = Meta.loading;
+        this._list = [];
+
+        const response: ApiResponse<ProductType[]> = await this._apistore.request({
+            method: HTTPMethod.GET,
+            url: '',
+        })
+        if (response.success && response.data) {
+            this._meta = Meta.success;
+            this._list = response.data.filter((item) => item.category.id === categoryId).slice(0, 3);
+        } else {
+            this._meta = Meta.error;
         }
     }
 
