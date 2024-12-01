@@ -4,15 +4,14 @@ import { Link } from 'react-router-dom';
 import ArrowRightIcon from '../icons/ArrowRightIcon';
 
 export type Pagination = {
-  productsPerPage: number;
-  totalProducts: number;
+  totalPages: number;
   paginate: (value: number) => void;
   currentPage: number;
 };
 
-const Pagination: React.FC<Pagination> = ({ productsPerPage, totalProducts, paginate, currentPage }) => {
+const Pagination: React.FC<Pagination> = ({ totalPages, paginate, currentPage }) => {
   const pageNumbers: Array<number | null> = [];
-  const totalPages = Math.ceil(totalProducts / productsPerPage);
+  // const totalPages = Math.ceil(totalProducts / productsPerPage);
 
   const startPage = Math.max(1, currentPage - 1);
   const endPage = Math.min(totalPages, currentPage + 2);

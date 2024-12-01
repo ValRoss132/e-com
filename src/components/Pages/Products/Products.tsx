@@ -10,28 +10,31 @@ import Pagination from '../../Pagination';
 import { observer } from 'mobx-react-lite';
 import ProductsStore from '../../../store/ProductsStore';
 import { useLocalStore } from '../../../utils/useLocalStore';
-
-const productsPerPage = 9;
+import Loader from '../../Loader';
+import { Meta } from '../../../utils/meta';
+import PaginationStore from '../../../store/PaginationStore/PaginationStore';
 
 const Products: React.FC = () => {
   const productsStore = useLocalStore(() => new ProductsStore());
+  const paginationStore = useLocalStore(() => new PaginationStore(productsStore));
 
   useEffect(() => {
     productsStore.getProductList();
   }, [productsStore]);
 
   const [value, setValue] = useState<string>('');
-  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleChange = (value: string) => {
     setValue(value);
   };
 
-  const lastProductsIndex = currentPage * productsPerPage;
-  const firstProductsIndex = lastProductsIndex - productsPerPage;
-  const currentProducts = productsStore.list.slice(firstProductsIndex, lastProductsIndex);
-
-  const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
+  if (productsStore.meta === Meta.loading) {
+    return (
+      <div className={classes.load}>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className={`${classes.productsWrapper} wrapper`}>
@@ -67,7 +70,7 @@ const Products: React.FC = () => {
           <span className={classes.value}>{productsStore.list.length}</span>
         </div>
         <div className={classes.items}>
-          {currentProducts.map((product) => (
+          {paginationStore.currentProducts.map((product) => (
             <Card
               url={`/product/${product.id}`}
               className={classes.item}
@@ -83,10 +86,9 @@ const Products: React.FC = () => {
         </div>
         <div className={classes.pagination}>
           <Pagination
-            productsPerPage={productsPerPage}
-            totalProducts={productsStore.list.length}
-            paginate={paginate}
-            currentPage={currentPage}
+            totalPages={paginationStore.totalPages}
+            paginate={paginationStore.paginate}
+            currentPage={paginationStore.currentPage}
           />
         </div>
       </div>

@@ -1,5 +1,13 @@
 @import url(../../../styles/variables.css);
 
+.load {
+    width: 60px;
+    height: calc(100vh - 190px);
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
 .productsWrapper {
     display: flex;
     flex-direction: column;

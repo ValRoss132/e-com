@@ -17,8 +17,12 @@ const Header = () => (
             <li className={classes.menuItem}>
               <Link to="/">Products</Link>
             </li>
-            <li className={classes.menuItem}>Categories</li>
-            <li className={classes.menuItem}>About us</li>
+            <li className={classes.menuItem}>
+              <Link to="/categories">Categories</Link>
+            </li>
+            <li className={classes.menuItem}>
+              <Link to="/about">About us</Link>
+            </li>
           </ul>
         </nav>
         <nav className={classes.menuIcons}>

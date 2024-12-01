@@ -31,7 +31,8 @@ export default class ProductsStore implements IProductStore {
             list: computed,
             meta: computed,
             getProductList: action,
-            getProductById: action
+            getProductById: action,
+            getRelatedProducts: action,
         })
     }
 
