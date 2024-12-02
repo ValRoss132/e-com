@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/products/:page" element={<Products />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/product">
           <Route path=":id" element={<Product />} />
         </Route>

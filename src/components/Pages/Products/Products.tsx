@@ -13,16 +13,26 @@ import { useLocalStore } from '../../../utils/useLocalStore';
 import Loader from '../../Loader';
 import { Meta } from '../../../utils/meta';
 import PaginationStore from '../../../store/PaginationStore/PaginationStore';
+import { useSearchParams } from 'react-router-dom';
+import useDebounce from '../../../utils/useDebounce';
 
 const Products: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const initialPage = parseInt(searchParams.get('page') || '1', 10) || 1;
+
   const productsStore = useLocalStore(() => new ProductsStore());
-  const paginationStore = useLocalStore(() => new PaginationStore(productsStore));
+  const paginationStore = useLocalStore(() => new PaginationStore(productsStore, initialPage));
+
+  const [value, setValue] = useState<string>('');
+  const debouncedValue = useDebounce(value);
 
   useEffect(() => {
     productsStore.getProductList();
   }, [productsStore]);
 
-  const [value, setValue] = useState<string>('');
+  useEffect(() => {
+    productsStore.searchProducts(debouncedValue);
+  }, [productsStore, debouncedValue]);
 
   const handleChange = (value: string) => {
     setValue(value);
@@ -49,7 +59,7 @@ const Products: React.FC = () => {
       </div>
       <div className={classes.searchWrapper}>
         <search className={classes.search}>
-          <Input className="search__input" value={value} onChange={handleChange} placeholder="Search Product"></Input>
+          <Input value={value} onChange={handleChange} placeholder="Search Product"></Input>
           <Button className={classes.button} loading={false}>
             Find Now
           </Button>
@@ -67,7 +77,7 @@ const Products: React.FC = () => {
           <Text className={classes.text} view="title">
             Total Product
           </Text>
-          <span className={classes.value}>{productsStore.list.length}</span>
+          <span className={classes.value}>{productsStore.filteredList.length}</span>
         </div>
         <div className={classes.items}>
           {paginationStore.currentProducts.map((product) => (

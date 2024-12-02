@@ -7,8 +7,9 @@ export default class PaginationStore {
     productsPerPage = 9;
     productsStore: ProductsStore;
 
-    constructor(productsStore: ProductsStore) {
+    constructor(productsStore: ProductsStore, initialPage: number = 1) {
         this.productsStore = productsStore;
+        this.currentPage = initialPage;
         makeObservable<PaginationStore>(this, {
             currentPage: observable,
             lastProductsIndex: computed,
@@ -20,7 +21,7 @@ export default class PaginationStore {
     }
 
     get lastProductsIndex(): number {
-        return Math.min(this.currentPage * this.productsPerPage, this.productsStore.list.length);
+        return Math.min(this.currentPage * this.productsPerPage, this.productsStore.filteredList.length);
     }
 
     get firstProductsIndex(): number {
@@ -28,11 +29,11 @@ export default class PaginationStore {
     }
 
     get currentProducts(): ProductType[] {
-        return this.productsStore.list.slice(this.firstProductsIndex, this.lastProductsIndex);
+        return this.productsStore.filteredList.slice(this.firstProductsIndex, this.lastProductsIndex);
     }
 
     get totalPages(): number {
-        return Math.ceil(this.productsStore.list.length / this.productsPerPage) || 1;
+        return Math.ceil(this.productsStore.filteredList.length / this.productsPerPage) || 1;
     }
 
     paginate = (pageNumber: number): void => {

@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable } from "mobx";
+import { action, computed, makeObservable, observable, runInAction } from "mobx";
 import { Meta } from "../../utils/meta";
 import { IProductStore, ProductType } from "./types";
 import ApiStore from "../ApiStore";
@@ -6,7 +6,7 @@ import { ApiResponse, HTTPMethod } from "../ApiStore/ApiStore";
 
 const BASE_URL = 'https://api.escuelajs.co/api/v1/products';
 
-type PrivateFields = "_list" | "_meta" | "_item";
+type PrivateFields = "_list" | "_meta" | "_item" | "_filteredList";
 
 export default class ProductsStore implements IProductStore {
     private readonly _apistore = new ApiStore(BASE_URL);
@@ -21,15 +21,18 @@ export default class ProductsStore implements IProductStore {
     };
     private _list: ProductType[] = [];
     private _meta: Meta = Meta.initial;
+    private _filteredList: ProductType[] = [];
 
     constructor() {
         makeObservable<ProductsStore, PrivateFields>(this, {
             _item: observable,
             _list: observable,
             _meta: observable,
+            _filteredList: observable,
             item: computed,
             list: computed,
             meta: computed,
+            filteredList: computed,
             getProductList: action,
             getProductById: action,
             getRelatedProducts: action,
@@ -48,20 +51,33 @@ export default class ProductsStore implements IProductStore {
         return this._meta;
     }
 
+    get filteredList(): ProductType[] {
+        return this._filteredList
+    }
+
     async getProductList(): Promise<void> {
         this._meta = Meta.loading;
         this._list = [];
+        this._filteredList = [];
 
-        const response: ApiResponse<ProductType[]> = await this._apistore.request({
-            method: HTTPMethod.GET,
-            url: ''
-        })
-
-        if (response.success && response.data) {
-            this._meta = Meta.success;
-            this._list = response.data;
-        } else {
-            this._meta = Meta.error;
+        try {
+            const response: ApiResponse<ProductType[]> = await this._apistore.request({
+                method: HTTPMethod.GET,
+                url: ''
+            })
+            runInAction(() => {
+                if (response.success && response.data) {
+                    this._meta = Meta.success;
+                    this._list = response.data;
+                    this._filteredList = response.data;
+                } else {
+                    this._meta = Meta.error;
+                }
+            })
+        } catch {
+            runInAction(() => {
+                this._meta = Meta.error;
+            })
         }
     }
 
@@ -69,38 +85,63 @@ export default class ProductsStore implements IProductStore {
         this._meta = Meta.loading;
         this._item = {
             id: NaN,
-            title: '',
-            price: NaN,
+            title: 'Product not found',
+            price: 0.000000000001,
             description: '',
             images: [],
             category: {id: NaN, name: '', image: ''}
         };
-        const response: ApiResponse<ProductType> = await this._apistore.request({
-            method: HTTPMethod.GET,
-            url: `/${id}`
-        })
-        if (response.success && response.data) {
-            this._meta = Meta.success;
-            this._item = response.data;
-        } else {
-            this._meta = Meta.error
+        try {
+            const response: ApiResponse<ProductType> = await this._apistore.request({
+                method: HTTPMethod.GET,
+                url: `/${id}`
+            })
+            runInAction(() => {
+                if (response.success && response.data) {
+                    this._meta = Meta.success;
+                    this._item = response.data;
+                } else {
+                    this._meta = Meta.error
+                }
+            })
+        } catch {
+            runInAction(() => {
+                this._meta = Meta.error;
+            })
         }
     }
 
     async getRelatedProducts(categoryId: number): Promise<void> {
         this._meta = Meta.loading;
         this._list = [];
-
-        const response: ApiResponse<ProductType[]> = await this._apistore.request({
-            method: HTTPMethod.GET,
-            url: '',
-        })
-        if (response.success && response.data) {
-            this._meta = Meta.success;
-            this._list = response.data.filter((item) => item.category.id === categoryId).slice(0, 3);
-        } else {
-            this._meta = Meta.error;
+        try {
+            const response: ApiResponse<ProductType[]> = await this._apistore.request({
+                method: HTTPMethod.GET,
+                url: '',
+            })
+            runInAction(() => {
+                if (response.success && response.data) {
+                    this._meta = Meta.success;
+                    this._list = response.data.filter((item) => item.category.id === categoryId).slice(0, 3);
+                } else {
+                    this._meta = Meta.error;
+                }
+            })
+        } catch {
+            runInAction(() => {
+                this._meta = Meta.error;
+            })
         }
+    }
+
+    searchProducts = (searchTerm: string) => {
+        runInAction(() => {
+            this._filteredList = searchTerm 
+                ? this._list.filter((product) => 
+                        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+                    )
+                : this._list
+        })
     }
 
     destroy(): void {
