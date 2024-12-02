@@ -11,13 +11,13 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Products />} />
+        <Route path="/products/:page" element={<Products />} />
         <Route path="/product">
           <Route path=":id" element={<Product />} />
         </Route>
         <Route path="/categories" element={<Categories />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/products" replace />} />
       </Routes>
     </BrowserRouter>
   );

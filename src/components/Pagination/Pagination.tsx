@@ -11,7 +11,6 @@ export type Pagination = {
 
 const Pagination: React.FC<Pagination> = ({ totalPages, paginate, currentPage }) => {
   const pageNumbers: Array<number | null> = [];
-  // const totalPages = Math.ceil(totalProducts / productsPerPage);
 
   const startPage = Math.max(1, currentPage - 1);
   const endPage = Math.min(totalPages, currentPage + 2);
@@ -29,7 +28,11 @@ const Pagination: React.FC<Pagination> = ({ totalPages, paginate, currentPage })
       <ul className={classes.list}>
         {currentPage > 1 && (
           <li className={classes.pageItem}>
-            <Link to="/" className={classes.pageLink} onClick={() => paginate(currentPage - 1)}>
+            <Link
+              to={`/products/${currentPage - 1}`}
+              className={classes.pageLink}
+              onClick={() => paginate(currentPage - 1)}
+            >
               <ArrowRightIcon className="arrowLeft" color="primary" width={32} height={32} viewBox="0 0 32 32" />
             </Link>
           </li>
@@ -44,7 +47,7 @@ const Pagination: React.FC<Pagination> = ({ totalPages, paginate, currentPage })
           } else {
             return (
               <li className={`${classes.pageItem} ${number == currentPage ? classes.active : ''}`} key={index}>
-                <Link to="/" className={classes.pageLink} onClick={() => paginate(number)}>
+                <Link to={`/products/${number}`} className={classes.pageLink} onClick={() => paginate(number)}>
                   {number}
                 </Link>
               </li>
@@ -53,7 +56,11 @@ const Pagination: React.FC<Pagination> = ({ totalPages, paginate, currentPage })
         })}
         {currentPage < totalPages && (
           <li className={classes.pageItem}>
-            <Link to="/" className={classes.pageLink} onClick={() => paginate(currentPage + 1)}>
+            <Link
+              to={`/products/${currentPage + 1}`}
+              className={classes.pageLink}
+              onClick={() => paginate(currentPage + 1)}
+            >
               <ArrowRightIcon
                 className={classes.arrowRight}
                 color="primary"

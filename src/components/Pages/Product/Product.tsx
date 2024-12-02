@@ -33,7 +33,7 @@ const Product: React.FC = () => {
 
   return (
     <div className={`${classes.productWrapper} wrapper`}>
-      <Link to="/">
+      <Link to={`/products/1`}>
         <div className={classes.backBtn}>
           <div className={classes.icon}>
             <ArrowDownIcon width={32} height={32} viewBox="0 0 24 24" color="primary" />

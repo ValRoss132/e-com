@@ -8,14 +8,14 @@ const Header = () => (
   <header className={classes.header}>
     <div className="wrapper">
       <div className={classes.headerWrapper}>
-        <div className={classes.logo}>
+        <Link to={`/products/1`} className={classes.logo}>
           <Logo className={classes.logoIcon} width={42} height={42} />
           <Lalasia className={classes.logoText} width={76} height={19} />
-        </div>
+        </Link>
         <nav className={classes.menu}>
           <ul className={classes.menuList}>
             <li className={classes.menuItem}>
-              <Link to="/">Products</Link>
+              <Link to={`/products/1`}>Products</Link>
             </li>
             <li className={classes.menuItem}>
               <Link to="/categories">Categories</Link>
