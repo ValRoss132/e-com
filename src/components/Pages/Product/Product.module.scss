@@ -12,7 +12,8 @@
     margin-bottom: 32px;
     display: flex;
     align-items: stretch;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
+    transition: gap 0.5s ease;
     max-width: 130px;
     .icon {
         transform: rotate(90deg);
@@ -22,6 +23,10 @@
         line-height: 24px;
         align-self: center;
     }
+}
+
+.backBtn:hover {
+    gap: var(--space-m);
 }
 
 .productContainer {

@@ -8,12 +8,26 @@
 	justify-content: space-between;
 	padding-bottom: var(--space-xl);
 	background-color: var(--card-bg);
-	transition: transform 0.5s ease;
+	transition: transform 1.5s ease;
 }
 
 .card:hover {
-	box-shadow: 0 4px 10px 0 #00000040;
+	animation: shadowGrow 1.5s ease forwards;
 	transform: scale(1.05);
+}
+
+.card:not(:hover) {
+	animation: shadowGrowReverse 1.5s ease forwards;
+}
+
+@keyframes shadowGrow {
+	0% {box-shadow: 0 0 0 #00000060;}
+	100% {box-shadow: 0 4px 10px #00000020;}
+}
+
+@keyframes shadowGrowReverse {
+	0% {box-shadow: 0 4px 10px #00000020;}
+	100% {box-shadow: 0 0 0 #00000060;}
 }
 
 .img {
