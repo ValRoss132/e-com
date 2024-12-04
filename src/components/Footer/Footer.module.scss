@@ -1,0 +1,19 @@
+@import '../../styles/variables.css';
+
+.footer {
+    background-color: var(--footer-bg);
+    height: 90px;
+    margin-top: 50px;
+}
+
+.contacts {  
+    display: flex;  
+    justify-content: space-around;
+    padding: 10px 0;
+    .list { 
+        margin: 0;
+    }
+    .contactsValue {
+        text-decoration: underline;
+    }
+}

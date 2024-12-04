@@ -5,6 +5,7 @@ import Product from './components/Pages/Product';
 import './styles/styles.css';
 import Categories from './components/Pages/Categories/Categories';
 import AboutPage from './components/Pages/AboutPage/AboutPage';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<Navigate to="/products" replace />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
