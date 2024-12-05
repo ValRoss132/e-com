@@ -134,13 +134,15 @@ export default class ProductsStore implements IProductStore {
         }
     }
 
-    searchProducts = (searchTerm: string) => {
+    searchProducts = (searchTerm: string, selectedCategory: string[]): void => {
         runInAction(() => {
-            this._filteredList = searchTerm 
-                ? this._list.filter((product) => 
-                        product.title.toLowerCase().includes(searchTerm.toLowerCase())
-                    )
-                : this._list
+            this._filteredList = this._list;
+            if (searchTerm) {
+                this._filteredList = this._filteredList.filter((product) => product.title.toLowerCase().includes(searchTerm.toLowerCase()));
+            }
+            if (selectedCategory.length > 0) {
+                this._filteredList = this._filteredList.filter((product) => selectedCategory.includes(product.category.id.toString()));
+            }
         })
     }
 
