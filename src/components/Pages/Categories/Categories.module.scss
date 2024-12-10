@@ -1,0 +1,17 @@
+.load {
+    width: 60px;
+    height: calc(100vh - 190px);
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px 5%;
+    .item {
+        flex: 0 33.33%;
+        max-width: 30%;
+    }
+}

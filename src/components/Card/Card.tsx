@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Text from '../Text';
 import classes from './Card.module.scss';
-import '../../styles/styles.css';
 import { Link } from 'react-router-dom';
 
 export type CardProps = {
@@ -12,9 +11,9 @@ export type CardProps = {
   /** Слот над заголовком */
   captionSlot?: React.ReactNode;
   /** Заголовок карточки */
-  title: React.ReactNode;
+  title?: React.ReactNode;
   /** Описание карточки */
-  subtitle: React.ReactNode;
+  subtitle?: React.ReactNode;
   /** Содержимое карточки (футер/боковая часть), может быть пустым */
   contentSlot?: React.ReactNode;
   /** Клик на карточку */
@@ -36,10 +35,14 @@ const Card: React.FC<CardProps> = ({
   actionSlot,
   url,
 }) => {
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
+
   return (
     <div className={`${classes.card} ${className}`} onClick={onClick}>
       <Link className={classes.link} to={url}></Link>
-      <img className={classes.img} src={image} alt="" />
+      <div className={!isImageLoaded ? classes.def : ''}>
+        <img className={classes.img} src={image} alt="" onLoad={() => setIsImageLoaded(true)} />
+      </div>
       <div className={classes.contentContainer}>
         <div className={classes.textContainer}>
           {captionSlot && (

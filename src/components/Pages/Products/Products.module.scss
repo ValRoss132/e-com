@@ -1,5 +1,13 @@
 @import url(../../../styles/variables.css);
 
+.load {
+    width: 60px;
+    height: calc(100vh - 190px);
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
 .productsWrapper {
     display: flex;
     flex-direction: column;
@@ -46,8 +54,7 @@
     .items {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 30px 0;
+        gap: 30px 5%;
     }
     .item {
         flex: 0 33.33%;

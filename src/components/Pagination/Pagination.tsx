@@ -4,18 +4,17 @@ import { Link } from 'react-router-dom';
 import ArrowRightIcon from '../icons/ArrowRightIcon';
 
 export type Pagination = {
-  productsPerPage: number;
-  totalProducts: number;
+  totalPages: number;
   paginate: (value: number) => void;
   currentPage: number;
 };
 
-const Pagination: React.FC<Pagination> = ({ productsPerPage, totalProducts, paginate, currentPage }) => {
+const Pagination: React.FC<Pagination> = ({ totalPages, paginate, currentPage }) => {
   const pageNumbers: Array<number | null> = [];
-  const totalPages = Math.ceil(totalProducts / productsPerPage);
-
   const startPage = Math.max(1, currentPage - 1);
   const endPage = Math.min(totalPages, currentPage + 2);
+
+  const baseUrl = '/products';
 
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
@@ -30,7 +29,11 @@ const Pagination: React.FC<Pagination> = ({ productsPerPage, totalProducts, pagi
       <ul className={classes.list}>
         {currentPage > 1 && (
           <li className={classes.pageItem}>
-            <Link to="/" className={classes.pageLink} onClick={() => paginate(currentPage - 1)}>
+            <Link
+              to={`${baseUrl}?page=${currentPage - 1}`}
+              className={classes.pageLink}
+              onClick={() => paginate(currentPage - 1)}
+            >
               <ArrowRightIcon className="arrowLeft" color="primary" width={32} height={32} viewBox="0 0 32 32" />
             </Link>
           </li>
@@ -45,7 +48,7 @@ const Pagination: React.FC<Pagination> = ({ productsPerPage, totalProducts, pagi
           } else {
             return (
               <li className={`${classes.pageItem} ${number == currentPage ? classes.active : ''}`} key={index}>
-                <Link to="/" className={classes.pageLink} onClick={() => paginate(number)}>
+                <Link to={`${baseUrl}?page=${number}`} className={classes.pageLink} onClick={() => paginate(number)}>
                   {number}
                 </Link>
               </li>
@@ -54,7 +57,11 @@ const Pagination: React.FC<Pagination> = ({ productsPerPage, totalProducts, pagi
         })}
         {currentPage < totalPages && (
           <li className={classes.pageItem}>
-            <Link to="/" className={classes.pageLink} onClick={() => paginate(currentPage + 1)}>
+            <Link
+              to={`${baseUrl}?page=${currentPage + 1}`}
+              className={classes.pageLink}
+              onClick={() => paginate(currentPage + 1)}
+            >
               <ArrowRightIcon
                 className={classes.arrowRight}
                 color="primary"
